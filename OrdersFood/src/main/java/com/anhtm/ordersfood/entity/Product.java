@@ -1,14 +1,19 @@
 package com.anhtm.ordersfood.entity;
 
+import com.anhtm.ordersfood.common.BaseEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @Table(name = "tbl_product")
-public class Product {
+@Entity
+public class Product extends BaseEntity<Serializable> {
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,11 +33,11 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "categories_id")
-    private Categories categories;
+    private Categories categories = new Categories();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user = new User();
 
     @Column(name = "active")
     private boolean active;

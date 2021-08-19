@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:MySql://localhost:3306/ordersfood
     username: root
-    password: "0774349901"
+    password: "root"
   jpa:
     show-sql: true
     generate-ddl: true

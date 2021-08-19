@@ -1,15 +1,21 @@
 package com.anhtm.ordersfood.entity;
 
+import com.anhtm.ordersfood.common.BaseEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @Table(name = "tbl_categories")
-public class Categories {
+@Entity
+public class Categories extends BaseEntity<Serializable> {
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,5 +25,5 @@ public class Categories {
     private String name;
 
     @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL)
-    private Set<Product> productSet;
+    private Set<Product> productSet = new HashSet<>();
 }
