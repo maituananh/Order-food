@@ -6,16 +6,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("api/categories")
-public interface CategoriesController {
+public abstract class CategoriesController {
+
     @PostMapping(path = "/save", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public abstract ResponseEntity<CategoriesDto> save(@RequestBody CategoriesDto dto);
+    public ResponseEntity<CategoriesDto> save(@RequestBody CategoriesDto dto) {
+        return this.save();
+    }
 
     @PutMapping(path = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public abstract ResponseEntity<CategoriesDto> update(CategoriesDto t);
+    public abstract ResponseEntity<CategoriesDto> update(@RequestBody CategoriesDto t);
 
     @DeleteMapping(path = "/delete", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public abstract ResponseEntity<CategoriesDto> delete(Integer id);
+
+    public abstract ResponseEntity<CategoriesDto> save();
 }

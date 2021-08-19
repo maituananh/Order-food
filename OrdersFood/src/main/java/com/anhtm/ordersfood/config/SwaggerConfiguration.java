@@ -11,7 +11,7 @@ import io.swagger.v3.oas.models.info.License;
 
 @Configuration
 @EnableAutoConfiguration
-public class SwaggerConfig {
+public class SwaggerConfiguration {
     @Bean
     public OpenAPI api() {
       return new OpenAPI()
