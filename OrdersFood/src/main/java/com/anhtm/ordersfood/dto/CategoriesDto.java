@@ -7,9 +7,10 @@ import java.util.Set;
 
 @Data
 public class CategoriesDto extends BaseDto {
+
     private Integer id;
 
     private String name;
 
-    private Set<ProductDto> productSet;
+    private Set<ProductDto> products;
 }

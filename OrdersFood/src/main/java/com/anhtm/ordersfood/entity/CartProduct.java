@@ -5,25 +5,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@Table(name = "tbl_categories")
+@Table(name = "tbl_cart_product")
 @Entity
-public class Categories extends BaseEntity<Serializable> {
-  
+public class CartProduct extends BaseEntity<Serializable> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
-    @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL)
-    private Set<Product> products = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "pay_id")
+    private Pay pay;
 }

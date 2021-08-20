@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -26,19 +29,32 @@ public class Product extends BaseEntity<Serializable> {
     private String description;
 
     @Column(name = "price")
-    private Integer price;
+    private BigDecimal price;
 
-    @Column(name = "main_photo")
-    private Integer mainPhoto;
+    @Column(name = "cost")
+    private BigDecimal cost;
+
+    @OneToOne
+    @JoinColumn(name = "main_photo")
+    private DataSource mainPhoto;
 
     @ManyToOne
-    @JoinColumn(name = "categories_id")
-    private Categories categories = new Categories();
+    @JoinColumn(name = "categories_id", nullable = false)
+    private Categories categories;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user = new User();
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "active")
     private boolean active;
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<DataSource> dataSourceProduct = new HashSet<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<CartProduct> cartProducts = new HashSet<>();
 }

@@ -1,12 +1,11 @@
 package com.anhtm.ordersfood.controller.impl;
 
+import com.anhtm.ordersfood.controller.UserController;
+import com.anhtm.ordersfood.dto.UserDto;
 import com.anhtm.ordersfood.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.anhtm.ordersfood.controller.UserController;
-import com.anhtm.ordersfood.dto.UserDto;
 
 @RestController
 public class UserControllerImpl implements UserController {
@@ -21,11 +20,16 @@ public class UserControllerImpl implements UserController {
 
   @Override
   public ResponseEntity<UserDto> update(UserDto t) {
-    return null;
+    return userService.update(t);
   }
 
   @Override
   public ResponseEntity<UserDto> delete(Integer id) {
-    return null;
+    return userService.delete(id);
+  }
+
+  @Override
+  public ResponseEntity<UserDto> deleteAndFlush(Integer id) {
+    return userService.deleteAndFlush(id);
   }
 }

@@ -7,9 +7,11 @@ spring:
     url: jdbc:MySql://localhost:3306/ordersfood
     username: root
     password: "root"
+    initialization-mode: always
+    platform: mysql
   jpa:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     database: mysql

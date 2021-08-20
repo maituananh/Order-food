@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class BaseDto<IdType extends Serializable> {
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
 
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedDate;
+
+    private Boolean active = true;
 }

@@ -2,7 +2,6 @@ package com.anhtm.ordersfood.controller.impl;
 
 import com.anhtm.ordersfood.controller.ProductController;
 import com.anhtm.ordersfood.dto.ProductDto;
-import com.anhtm.ordersfood.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,12 +11,12 @@ import java.util.List;
 public class ProductControllerImpl implements ProductController {
 
     @Override
-    public ResponseEntity<ProductDto> save(List<ProductDto> dtoList) {
+    public ResponseEntity<ProductDto> save(List<ProductDto> dto) {
         return null;
     }
 
     @Override
-    public ResponseEntity<UserDto> delete(Integer id) {
+    public ResponseEntity<ProductDto> delete(Integer id) {
         return null;
     }
 }

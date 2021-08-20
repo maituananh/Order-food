@@ -27,12 +27,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<UserDto> update(UserDto t) {
-        return null;
+    public ResponseEntity<UserDto> update(UserDto dto) {
+        if (userRepository.getOne(dto.getId()) != null) {
+            User user = modelMapper.map(dto, User.class);
+            userRepository.save(user);
+            return new ResponseEntity<UserDto>(dto, HttpStatus.OK);
+        }
+        return new ResponseEntity<UserDto>(dto, HttpStatus.NOT_FOUND);
     }
 
     @Override
     public ResponseEntity<UserDto> delete(Integer id) {
-        return null;
+        User user = userRepository.getOne(id);
+        UserDto userDto = null;
+        if (user != null) {
+            user.setActive(false);
+            userRepository.save(user);
+            userDto = modelMapper.map(user, UserDto.class);
+            return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+        }
+        return new ResponseEntity<UserDto>(userDto, HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    public ResponseEntity<UserDto> deleteAndFlush(Integer id) {
+        User user = userRepository.getOne(id);
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+        if (user != null) {
+            userRepository.deleteById(id);
+            return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+        }
+        return new ResponseEntity<UserDto>(userDto, HttpStatus.NOT_FOUND);
     }
 }

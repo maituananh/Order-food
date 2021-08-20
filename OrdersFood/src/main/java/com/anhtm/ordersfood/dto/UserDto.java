@@ -1,6 +1,7 @@
 package com.anhtm.ordersfood.dto;
 
 import com.anhtm.ordersfood.common.BaseDto;
+import com.anhtm.ordersfood.entity.Product;
 import lombok.Data;
 
 import java.util.Set;
@@ -18,5 +19,7 @@ public class UserDto extends BaseDto {
 
   private String phone;
 
-  private Set<ProductDto> productSet;
+  private String password;
+
+  private Set<ProductDto> products;
 }

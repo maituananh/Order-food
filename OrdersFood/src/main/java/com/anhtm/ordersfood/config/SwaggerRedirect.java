@@ -1,4 +1,4 @@
-package com.anhtm.ordersfood.controller.impl;
+package com.anhtm.ordersfood.config;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class SwaggerController {
+public class SwaggerRedirect {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView method() {

@@ -5,17 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@Table(name = "tbl_categories")
+@Table(name = "tbl_datasource")
 @Entity
-public class Categories extends BaseEntity<Serializable> {
-  
+public class DataSource extends BaseEntity<Serializable> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,6 +20,11 @@ public class Categories extends BaseEntity<Serializable> {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL)
-    private Set<Product> products = new HashSet<>();
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
+
+    @ManyToOne
+    @JoinColumn(name = "dataSourceProduct", nullable = false)
+    private Product product;
 }

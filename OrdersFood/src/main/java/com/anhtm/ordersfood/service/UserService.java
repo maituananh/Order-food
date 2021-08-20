@@ -5,9 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
 public interface UserService {
-    public ResponseEntity<UserDto> save(@RequestBody UserDto dto);
+    ResponseEntity<UserDto> save(@RequestBody UserDto dto);
 
-    public ResponseEntity<UserDto> update(UserDto t);
+    ResponseEntity<UserDto> update(UserDto t);
 
-    public ResponseEntity<UserDto> delete(Integer id);
+    ResponseEntity<UserDto> delete(Integer id);
+
+    ResponseEntity<UserDto> deleteAndFlush(Integer id);
 }
