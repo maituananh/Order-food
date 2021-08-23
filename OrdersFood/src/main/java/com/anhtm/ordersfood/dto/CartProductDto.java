@@ -1,7 +1,6 @@
 package com.anhtm.ordersfood.dto;
 
 import com.anhtm.ordersfood.common.BaseEntity;
-import com.anhtm.ordersfood.entity.Cart;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,9 +10,10 @@ public class CartProductDto extends BaseEntity<Serializable> {
 
     private Integer id;
 
-    private Cart cart;
+    private CartDto cart;
 
-    private ProductDto product;
+    private Integer product_id;
+//    private ProductDto product;
 
-    private PayDto pay;
+    private PayDto pay = null;
 }

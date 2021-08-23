@@ -1,5 +1,9 @@
 package com.anhtm.ordersfood.common;
 
-public abstract class BaseController {
+import org.springframework.http.ResponseEntity;
+
+public interface BaseController {
+
+    public ResponseEntity <?> search();
 
 }

@@ -1,7 +1,7 @@
 package com.anhtm.ordersfood.dto;
 
 import com.anhtm.ordersfood.common.BaseDto;
-import com.anhtm.ordersfood.entity.Product;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.Set;
@@ -21,5 +21,6 @@ public class UserDto extends BaseDto {
 
   private String password;
 
+  @Schema(nullable = true, defaultValue = "null")
   private Set<ProductDto> products;
 }

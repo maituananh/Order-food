@@ -4,7 +4,6 @@ import com.anhtm.ordersfood.common.BaseDto;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -20,11 +19,14 @@ public class ProductDto extends BaseDto {
 
   private BigDecimal cost;
 
-  private DataSourceDto mainPhoto;
+  private Integer mainPhoto_id;
+//  private DataSourceDto mainPhoto;
 
-  private CategoriesDto categories;
+  private Integer categories_id;
+//  private CategoriesDto categories;
 
-  private UserDto user;
+  private Integer user_id;
+//  private UserDto user;
 
   private boolean active;
 

@@ -1,0 +1,21 @@
+version: "3"
+services:
+  employee-jdbc:
+    image: order-food-be
+    ports:
+      - "8080:8080"
+    networks:
+      - order-food
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:8
+    networks:
+      - order-food
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ordersfood
+
+networks:
+  order-food: 

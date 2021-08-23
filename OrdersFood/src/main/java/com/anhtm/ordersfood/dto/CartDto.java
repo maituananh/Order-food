@@ -13,7 +13,8 @@ public class CartDto extends BaseEntity<Serializable> {
 
     private Set<CartProductDto> cartProducts;
 
-    private UserDto user;
+    private Integer user_id;
+//    private UserDto user;
 
     private Integer quantity;
 }

@@ -14,5 +14,6 @@ public class DataSourceDto extends BaseEntity<Serializable> {
 
     private byte[] image;
 
+    private ProductDto product_id;
     private ProductDto product;
 }
