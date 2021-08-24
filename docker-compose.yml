@@ -1,21 +1,36 @@
-version: "3"
+version: '3.1'
+
 services:
-  employee-jdbc:
-    image: order-food-be
+  db:
+    image: mysql
+    container_name: db
     ports:
-      - "8080:8080"
+      - 3306:3306
+    expose:
+      - 3306
     networks:
-      - order-food
-    depends_on:
-      - mysqldb
- 
-  mysqldb:
-    image: mysql:8
-    networks:
-      - order-food
+      - jobsearchtracker-net
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=ordersfood
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_DATABASE: 'ordersfood'
+      MYSQL_ROOT_PASSWORD: 'root'
+
+  web:
+    image: order-food-be
+    container_name: web
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/ordersfood?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: 'root'
+      SPRING_DATASOURCE_PASSWORD: 'root'
+    networks:
+      - jobsearchtracker-net
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    links:
+      - db:db
 
 networks:
-  order-food: 
+  jobsearchtracker-net:

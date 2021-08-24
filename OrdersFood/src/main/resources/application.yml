@@ -1,17 +1,18 @@
 server:
-  port: 8989
+  port: 8080
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:MySql://localhost:3306/ordersfood
+    url: jdbc:mysql://localhost:3306/ordersfood?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
-    password: "root"
+    password: root
     initialization-mode: always
     platform: mysql
   jpa:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     database: mysql
+    database-platform: org.hibernate.dialect.MySQL5Dialect
