@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity <IdType extends Serializable> {
 
     @CreationTimestamp
-    @Column(name = "created_date")
+    @Column(name = "created_date", updatable = false)
     private LocalDateTime createdDate;
 
     @UpdateTimestamp

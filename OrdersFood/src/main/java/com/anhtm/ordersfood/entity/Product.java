@@ -52,8 +52,8 @@ public class Product extends BaseEntity<Serializable> {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<DataSource> dataSourceProduct = new HashSet<>();
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<DataSource> dataSourceProduct = new HashSet<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<CartProduct> cartProducts = new HashSet<>();

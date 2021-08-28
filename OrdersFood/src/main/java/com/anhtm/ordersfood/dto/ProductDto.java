@@ -1,6 +1,7 @@
 package com.anhtm.ordersfood.dto;
 
 import com.anhtm.ordersfood.common.BaseDto;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -19,7 +20,7 @@ public class ProductDto extends BaseDto {
 
   private BigDecimal cost;
 
-  private Integer mainPhoto_id;
+//  private Integer mainPhoto_id;
 //  private DataSourceDto mainPhoto;
 
   private Integer categories_id;
@@ -32,7 +33,8 @@ public class ProductDto extends BaseDto {
 
   private Integer quantity;
 
-  private Set<DataSourceDto> dataSourceProduct;
+//  private Set<DataSourceDto> dataSourceProduct;
 
-//  private Set<CartProductDto> cartProducts;
+  @Schema(defaultValue = "null", hidden = true)
+  private Set<CartProductDto> cartProducts;
 }

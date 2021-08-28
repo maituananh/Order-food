@@ -13,10 +13,12 @@ public class UserDto extends BaseDto {
 
   private String name;
 
+  @Schema(defaultValue = "OderfoodApp@gmail.com")
   private String email;
 
   private String address;
 
+  @Schema(defaultValue = "0123619063")
   private String phone;
 
   private String password;
