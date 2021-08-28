@@ -42,7 +42,7 @@ public class Product extends BaseEntity<Serializable> {
     @JoinColumn(name = "categories_id", nullable = false)
     private Categories categories;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

@@ -36,6 +36,6 @@ public class User extends BaseEntity<Serializable> {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Product> products = new HashSet<>();
 }
