@@ -25,5 +25,5 @@ public class Categories extends BaseEntity<Serializable> {
     private String name;
 
     @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL)
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> products;
 }

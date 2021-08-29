@@ -21,6 +21,12 @@ public abstract class BaseEntity <IdType extends Serializable> {
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
 
+    @Column(name = "created_by", updatable = false)
+    private Integer createdBy;
+
+    @Column(name = "updated_by")
+    private Integer updatedBy;
+
     @Column(name = "active", columnDefinition = "boolean default true", nullable = false)
     private Boolean active = true;
 }

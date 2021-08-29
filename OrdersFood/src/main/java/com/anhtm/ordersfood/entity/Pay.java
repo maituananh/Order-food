@@ -21,5 +21,5 @@ public class Pay extends BaseEntity<Serializable> {
     private Integer id;
 
     @OneToMany(mappedBy = "pay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<CartProduct> cartProducts = new HashSet<>();
+    private Set<CartProduct> cartProducts;
 }

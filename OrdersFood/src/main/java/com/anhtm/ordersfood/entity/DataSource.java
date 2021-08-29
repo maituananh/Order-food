@@ -25,6 +25,6 @@ public class DataSource extends BaseEntity<Serializable> {
     private byte[] image;
 
     @ManyToOne
-    @JoinColumn(name = "dataSourceProduct", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 }

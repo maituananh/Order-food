@@ -22,7 +22,4 @@ public class UserDto extends BaseDto {
   private String phone;
 
   private String password;
-
-  @Schema(nullable = true, defaultValue = "null")
-  private Set<ProductDto> products;
 }

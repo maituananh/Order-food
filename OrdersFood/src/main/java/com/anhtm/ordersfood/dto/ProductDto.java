@@ -10,31 +10,30 @@ import java.util.Set;
 @Data
 public class ProductDto extends BaseDto {
 
-  private Integer id;
+    private Integer id;
 
-  private String name;
+    private String name;
 
-  private String description;
+    private String description;
 
-  private BigDecimal price;
+    @Schema(defaultValue = "40.000")
+    private BigDecimal price;
 
-  private BigDecimal cost;
+    @Schema(defaultValue = "500.000")
+    private BigDecimal cost;
 
-//  private Integer mainPhoto_id;
-//  private DataSourceDto mainPhoto;
+    private Integer quantity;
 
-  private Integer categories_id;
-//  private CategoriesDto categories;
+    private Integer mainPhotoId;
+    @Schema(defaultValue = "null", hidden = true)
+    private DataSourceDto mainPhoto;
 
-  private Integer user_id;
-//  private UserDto user;
-
-  private boolean active;
-
-  private Integer quantity;
+    private Integer categoriesId;
+    @Schema(defaultValue = "null", hidden = true)
+    private CategoriesDto categories;
 
 //  private Set<DataSourceDto> dataSourceProduct;
 
-  @Schema(defaultValue = "null", hidden = true)
-  private Set<CartProductDto> cartProducts;
+    @Schema(defaultValue = "null", hidden = true)
+    private Set <CartProductDto> cartProducts;
 }

@@ -6,19 +6,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("api/cart")
-public interface CartController {
+public class CartController {
 
     @PostMapping(path = "/save", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public abstract ResponseEntity<CartDto> save(@RequestBody CartDto dto);
+    public ResponseEntity<CartDto> save(@RequestBody CartDto dto){return null;}
 
     @PutMapping(path = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public abstract ResponseEntity<CartDto> update(@RequestBody CartDto t);
+    public ResponseEntity<CartDto> update(@RequestBody CartDto t){return null;}
 
     @DeleteMapping(path = "/delete")
-    public abstract ResponseEntity<CartDto> delete(Integer id);
+    public ResponseEntity<CartDto> delete(Integer id){return null;}
 
     @DeleteMapping(path = "/delete-flush")
-    public abstract ResponseEntity<CartDto> deleteAndFlush(Integer id);
+    public ResponseEntity<CartDto> deleteAndFlush(Integer id){return null;}
 }

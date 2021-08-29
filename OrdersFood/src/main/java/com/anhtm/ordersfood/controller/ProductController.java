@@ -1,29 +1,32 @@
 package com.anhtm.ordersfood.controller;
 
 import com.anhtm.ordersfood.dto.ProductDto;
+import com.anhtm.ordersfood.service.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Tag(name = "User Product", description = "REST Apis related to Product Entity.")
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/product")
 public class ProductController {
 
-    @PostMapping(path = "/save", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+    @Autowired
+    private ProductService productService;
+
+    @PostMapping(path = "/save", consumes = {MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ProductDto> save(List<ProductDto> dto) {
-        return null;
+    public ResponseEntity <Object> save (@RequestBody List<ProductDto> dtos) {
+        return productService.save(dtos);
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity<ProductDto> delete(Integer id) {
+    public ResponseEntity <Object> delete (@PathVariable Integer id) {
         return null;
     }
 }

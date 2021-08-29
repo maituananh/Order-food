@@ -29,12 +29,6 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     /**
-     * The Model mapper.
-     */
-    @Autowired
-    private ModelMapper modelMapper;
-
-    /**
      * The User converter.
      */
     @Autowired
@@ -136,5 +130,9 @@ public class UserServiceImpl implements UserService {
             return ResponseUtils.response(dto, "Duplicate Number Phone", HttpStatus.BAD_REQUEST);
         }
         return null;
+    }
+
+    public User getCurrentUser() {
+        return userRepository.findById(1).get();
     }
 }

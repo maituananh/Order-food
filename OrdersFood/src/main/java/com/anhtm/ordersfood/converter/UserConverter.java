@@ -16,10 +16,12 @@ public class UserConverter implements BaseConverter<UserDto, User> {
         dto.setEmail(user.getEmail());
         dto.setAddress(user.getAddress());
         dto.setPhone(user.getPhone());
-//        dto.setPassword(user.getPassword());
-        dto.setProducts(null);
+
+        dto.setActive(user.getActive());
         dto.setCreatedDate(user.getCreatedDate());
         dto.setUpdatedDate(user.getUpdatedDate());
+        dto.setCreatedBy(user.getCreatedBy());
+        dto.setUpdatedBy(user.getUpdatedBy());
         return dto;
     }
 
@@ -32,7 +34,10 @@ public class UserConverter implements BaseConverter<UserDto, User> {
         entity.setAddress(userDto.getAddress());
         entity.setPhone(userDto.getPhone());
         entity.setPassword(userDto.getPassword());
-        entity.setProducts(null);
+
+        entity.setActive(userDto.getActive());
+        entity.setCreatedBy(userDto.getCreatedBy());
+        entity.setUpdatedBy(userDto.getUpdatedBy());
         return entity;
     }
 }
