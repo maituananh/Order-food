@@ -4,8 +4,6 @@ import com.anhtm.ordersfood.common.BaseDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.util.Set;
-
 @Data
 public class UserDto extends BaseDto {
 

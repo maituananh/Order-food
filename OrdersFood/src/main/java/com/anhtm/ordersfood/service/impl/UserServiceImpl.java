@@ -1,14 +1,13 @@
 package com.anhtm.ordersfood.service.impl;
 
 import com.anhtm.ordersfood.converter.UserConverter;
-import com.anhtm.ordersfood.dto.ResponseHeaderDto;
 import com.anhtm.ordersfood.dto.UserDto;
 import com.anhtm.ordersfood.entity.User;
 import com.anhtm.ordersfood.repository.UserRepository;
 import com.anhtm.ordersfood.service.UserService;
+import com.anhtm.ordersfood.utils.Base64Utils;
 import com.anhtm.ordersfood.utils.RegexUtils;
 import com.anhtm.ordersfood.utils.ResponseUtils;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +42,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public ResponseEntity <Object> save (UserDto dto) {
+//        User user1 = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         // validate email and phone
         ResponseEntity res = this.validEmail(dto) != null ? this.validEmail(dto) : this.validNumPhone(dto);
         if (res != null) {
@@ -114,7 +114,7 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = userRepository.findByEmailIgnoreCase(dto.getEmail());
-        if (user != null && user.getId() != dto.getId()) {
+        if (user != null && user.getId().equals(dto.getId())) {
             return ResponseUtils.response(dto, "Duplicate Email", HttpStatus.BAD_REQUEST);
         }
         return null;
@@ -126,7 +126,7 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = userRepository.findByPhone(dto.getPhone());
-        if (user != null && user.getId() != dto.getId()) {
+        if (user != null && user.getId().equals(dto.getId())) {
             return ResponseUtils.response(dto, "Duplicate Number Phone", HttpStatus.BAD_REQUEST);
         }
         return null;

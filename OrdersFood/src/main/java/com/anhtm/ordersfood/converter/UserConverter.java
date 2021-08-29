@@ -3,6 +3,7 @@ package com.anhtm.ordersfood.converter;
 import com.anhtm.ordersfood.common.BaseConverter;
 import com.anhtm.ordersfood.dto.UserDto;
 import com.anhtm.ordersfood.entity.User;
+import com.anhtm.ordersfood.utils.Base64Utils;
 import org.springframework.stereotype.Service;
 
 @Service
