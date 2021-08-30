@@ -5,9 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-import java.util.HashSet;
-import java.util.Set;
 import java.io.Serializable;
 
 @Data
@@ -24,14 +21,17 @@ public class User extends BaseEntity<Serializable> {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true, length = 200)
     private String email;
 
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "phone", nullable = false)
+    @Column(name = "phone", nullable = false, unique = true, length = 200)
     private String phone;
+
+    @Column(name = "username", nullable = false, unique = true, length = 200)
+    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;

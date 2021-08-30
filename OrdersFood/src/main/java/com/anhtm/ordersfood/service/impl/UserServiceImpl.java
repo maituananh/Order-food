@@ -5,7 +5,6 @@ import com.anhtm.ordersfood.dto.UserDto;
 import com.anhtm.ordersfood.entity.User;
 import com.anhtm.ordersfood.repository.UserRepository;
 import com.anhtm.ordersfood.service.UserService;
-import com.anhtm.ordersfood.utils.Base64Utils;
 import com.anhtm.ordersfood.utils.RegexUtils;
 import com.anhtm.ordersfood.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,7 +131,18 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    public User getCurrentUser() {
-        return userRepository.findById(1).get();
-    }
+//    @Override
+//    public CustomUserDetails loadUserById (Long l) {
+//        return new CustomUserDetails(userRepository.findById(1).get());
+//    }
+
+//    @Override
+//    public UserDetails loadUserByUsername (String s) throws UsernameNotFoundException {
+//        // Kiểm tra xem user có tồn tại trong database không?
+//        User user = userRepository.findByUsername(s);
+//        if (user == null) {
+//            throw new UsernameNotFoundException(s);
+//        }
+//        return new CustomUserDetails(user);
+//    }
 }

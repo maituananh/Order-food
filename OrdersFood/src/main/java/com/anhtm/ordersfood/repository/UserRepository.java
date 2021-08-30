@@ -20,4 +20,6 @@ public interface UserRepository extends BaseRepository<User, Integer> {
     public User findByEmailIgnoreCase(String email);
 
     public User findByPhone(String phone);
+
+    User findByUsername(String username);
 }
