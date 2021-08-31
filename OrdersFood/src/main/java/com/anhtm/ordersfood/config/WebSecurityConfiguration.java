@@ -20,7 +20,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
+
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private static final String[] AUTH_WHITELIST = {
             // -- Swagger UI v2
@@ -55,30 +61,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
         ;
-//        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-//    @Bean
-//    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-//        return new JwtAuthenticationFilter();
-//    }
-//
-//    @Bean(BeanIds.AUTHENTICATION_MANAGER)
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        // Get AuthenticationManager bean
-//        return super.authenticationManagerBean();
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        // Password encoder, để Spring Security sử dụng mã hóa mật khẩu người dùng
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-////        auth.userDetailsService(userService) // Cung cáp userservice cho spring security
-////                .passwordEncoder(passwordEncoder()); // cung cấp password encoder
-//    }
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        // Get AuthenticationManager bean
+        return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService) // Cung cáp userservice cho spring security
+                .passwordEncoder(passwordEncoder); // cung cấp password encoder
+    }
 }

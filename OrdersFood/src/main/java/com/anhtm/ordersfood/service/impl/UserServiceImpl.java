@@ -1,5 +1,6 @@
 package com.anhtm.ordersfood.service.impl;
 
+import com.anhtm.ordersfood.config.CustomUserDetails;
 import com.anhtm.ordersfood.converter.UserConverter;
 import com.anhtm.ordersfood.dto.UserDto;
 import com.anhtm.ordersfood.entity.User;
@@ -10,6 +11,8 @@ import com.anhtm.ordersfood.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -131,18 +134,18 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-//    @Override
-//    public CustomUserDetails loadUserById (Long l) {
-//        return new CustomUserDetails(userRepository.findById(1).get());
-//    }
+    @Override
+    public CustomUserDetails loadUserById (Long l) {
+        return new CustomUserDetails(userRepository.findById(1).get());
+    }
 
-//    @Override
-//    public UserDetails loadUserByUsername (String s) throws UsernameNotFoundException {
-//        // Kiểm tra xem user có tồn tại trong database không?
-//        User user = userRepository.findByUsername(s);
-//        if (user == null) {
-//            throw new UsernameNotFoundException(s);
-//        }
-//        return new CustomUserDetails(user);
-//    }
+    @Override
+    public UserDetails loadUserByUsername (String s) throws UsernameNotFoundException {
+        // Kiểm tra xem user có tồn tại trong database không?
+        User user = userRepository.findByUsername(s);
+        if (user == null) {
+            throw new UsernameNotFoundException(s);
+        }
+        return new CustomUserDetails(user);
+    }
 }
