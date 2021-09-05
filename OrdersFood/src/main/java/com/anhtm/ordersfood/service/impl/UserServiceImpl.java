@@ -1,7 +1,7 @@
 package com.anhtm.ordersfood.service.impl;
 
-import com.anhtm.ordersfood.config.CustomUserDetails;
 import com.anhtm.ordersfood.converter.UserConverter;
+import com.anhtm.ordersfood.dto.LogAppDto;
 import com.anhtm.ordersfood.dto.UserDto;
 import com.anhtm.ordersfood.entity.User;
 import com.anhtm.ordersfood.repository.UserRepository;
@@ -11,10 +11,12 @@ import com.anhtm.ordersfood.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 /**
  * The type User service.
@@ -35,6 +37,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserConverter userConverter;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     /**
      * Save response entity .
      *
@@ -44,9 +49,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public ResponseEntity <Object> save (UserDto dto) {
-//        User user1 = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         // validate email and phone
-        ResponseEntity res = this.validEmail(dto) != null ? this.validEmail(dto) : this.validNumPhone(dto);
+        ResponseEntity <Object> res = this.validEmail(dto) != null ? this.validEmail(dto) :
+                this.validNumPhone(dto);
         if (res != null) {
             return res;
         }
@@ -68,7 +73,8 @@ public class UserServiceImpl implements UserService {
             return ResponseUtils.response(dto, "Object not found", HttpStatus.NOT_FOUND);
         }
         // validate email and phone
-        ResponseEntity res = this.validEmail(dto) != null ? this.validEmail(dto) : this.validNumPhone(dto);
+        ResponseEntity <Object> res = this.validEmail(dto) != null ? this.validEmail(dto) :
+                this.validNumPhone(dto);
         if (res != null) {
             return res;
         }
@@ -85,10 +91,12 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public ResponseEntity <Object> delete (Integer id) {
-        User user = userRepository.getOne(id);
-        if (user != null) {
+        Optional <User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
             user.setActive(false);
-            return ResponseUtils.response(userConverter.entityToDto(userRepository.save(user)), "Completed", HttpStatus.OK);
+            return ResponseUtils.response(userConverter.entityToDto(userRepository.save(user)),
+                    "Completed", HttpStatus.OK);
         }
         return ResponseUtils.response(id, "ID Not Found", HttpStatus.NOT_FOUND);
     }
@@ -102,15 +110,14 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public ResponseEntity <Object> deleteAndFlush (Integer id) {
-        User user = userRepository.getOne(id);
-        if (user != null) {
+        if (userRepository.findById(id).isPresent()) {
             userRepository.deleteById(id);
-            return ResponseUtils.response(userConverter.entityToDto(user), "Completed", HttpStatus.OK);
+            return ResponseUtils.response(id, "Completed", HttpStatus.OK);
         }
         return ResponseUtils.response(id, "ID Not Found", HttpStatus.NOT_FOUND);
     }
 
-    private ResponseEntity validEmail(UserDto dto) {
+    private ResponseEntity <Object> validEmail (UserDto dto) {
         if (!RegexUtils.validateEmail(dto.getEmail())) {
             return ResponseUtils.response(dto, "Email Invalid", HttpStatus.BAD_REQUEST);
         }
@@ -122,7 +129,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    private ResponseEntity validNumPhone(UserDto dto) {
+    private ResponseEntity <Object> validNumPhone (UserDto dto) {
         if (dto.getPhone().length() != 10) {
             return ResponseUtils.response(dto, "Number Phone Invalid", HttpStatus.BAD_REQUEST);
         }
@@ -134,18 +141,29 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    @Override
-    public CustomUserDetails loadUserById (Long l) {
-        return new CustomUserDetails(userRepository.findById(1).get());
-    }
+//    private ResponseEntity <Object> validPassword (UserDto dto) {
+//        if (dto.getPassword().length() < 11 && dto.getPassword().length() > 8) {
+//            return ResponseUtils.response(dto, "Invalid Password, password length > 8 and < 11",
+//                    HttpStatus.BAD_REQUEST);
+//        }
+//        return null;
+//    }
 
     @Override
-    public UserDetails loadUserByUsername (String s) throws UsernameNotFoundException {
-        // Kiểm tra xem user có tồn tại trong database không?
-        User user = userRepository.findByUsername(s);
-        if (user == null) {
-            throw new UsernameNotFoundException(s);
+    public ResponseEntity <Object> findUser (LogAppDto dto) {
+        if (dto == null || dto.getUsername() == null || dto.getPassword() == null) {
+            return ResponseUtils.response(dto, "username or password is empty",
+                    HttpStatus.BAD_REQUEST);
         }
-        return new CustomUserDetails(user);
+
+        User user = userRepository.findByUsername(dto.getUsername());
+
+        if (user == null || !passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
+            return ResponseUtils.response(dto, "Invalid username or password",
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        return ResponseUtils.response(userConverter.entityToDto(user), "Completed",
+                HttpStatus.OK);
     }
 }

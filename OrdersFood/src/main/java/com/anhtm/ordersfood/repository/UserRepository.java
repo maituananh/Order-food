@@ -17,9 +17,9 @@ public interface UserRepository extends BaseRepository<User, Integer> {
      *
      * @return the user
      */
-    public User findByEmailIgnoreCase(String email);
+    User findByEmailIgnoreCase(String email);
 
-    public User findByPhone(String phone);
+    User findByPhone(String phone);
 
     User findByUsername(String username);
 }

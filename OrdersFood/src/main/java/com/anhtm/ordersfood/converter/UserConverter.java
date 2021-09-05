@@ -3,7 +3,6 @@ package com.anhtm.ordersfood.converter;
 import com.anhtm.ordersfood.common.BaseConverter;
 import com.anhtm.ordersfood.dto.UserDto;
 import com.anhtm.ordersfood.entity.User;
-import com.anhtm.ordersfood.utils.Base64Utils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +16,7 @@ public class UserConverter implements BaseConverter<UserDto, User> {
         dto.setEmail(user.getEmail());
         dto.setAddress(user.getAddress());
         dto.setPhone(user.getPhone());
+        dto.setUsername(user.getUsername());
 
         dto.setActive(user.getActive());
         dto.setCreatedDate(user.getCreatedDate());
@@ -35,6 +35,7 @@ public class UserConverter implements BaseConverter<UserDto, User> {
         entity.setAddress(userDto.getAddress());
         entity.setPhone(userDto.getPhone());
         entity.setPassword(userDto.getPassword());
+        entity.setUsername(userDto.getUsername());
 
         entity.setActive(userDto.getActive());
         entity.setCreatedBy(userDto.getCreatedBy());

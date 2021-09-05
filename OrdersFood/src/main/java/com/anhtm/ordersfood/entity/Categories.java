@@ -3,9 +3,10 @@ package com.anhtm.ordersfood.entity;
 import com.anhtm.ordersfood.common.BaseEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,8 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "tbl_categories")
 @Entity
-public class Categories extends BaseEntity<Serializable> {
-  
+public class Categories extends BaseEntity <Serializable> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,6 +25,9 @@ public class Categories extends BaseEntity<Serializable> {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL)
-    private Set<Product> products;
+    @OneToMany(targetEntity = Product.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch =
+            FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "categories_id", referencedColumnName = "id")
+    @Fetch(value= FetchMode.SELECT)
+    private Set <Product> products;
 }

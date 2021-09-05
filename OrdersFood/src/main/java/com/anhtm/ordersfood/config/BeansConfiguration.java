@@ -1,12 +1,10 @@
 package com.anhtm.ordersfood.config;
 
-//import org.modelmapper.ModelMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.anhtm.ordersfood.config.jwt.JwtAuthenticationFilter;
+import io.swagger.v3.oas.models.OpenAPI;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -21,6 +19,10 @@ public class BeansConfiguration {
      *
      * @return the model mapper
      */
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
@@ -30,5 +32,11 @@ public class BeansConfiguration {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public OpenAPI swagger() {
+        SwaggerConfiguration swaggerConfiguration = new SwaggerConfiguration();
+        return swaggerConfiguration.api();
     }
 }

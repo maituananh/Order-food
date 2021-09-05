@@ -1,4 +1,4 @@
-package com.anhtm.ordersfood.config;
+package com.anhtm.ordersfood.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +18,8 @@ public class SwaggerRedirect {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView method() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("redirect:");
-        stringBuilder.append("/swagger-ui.html");
-        return new ModelAndView(stringBuilder.toString());
+        String string = "redirect:" +
+                "/swagger-ui.html";
+        return new ModelAndView(string);
     }
 }

@@ -2,9 +2,10 @@ package com.anhtm.ordersfood.converter;
 
 import com.anhtm.ordersfood.common.BaseConverter;
 import com.anhtm.ordersfood.dto.ProductDto;
+import com.anhtm.ordersfood.entity.Categories;
 import com.anhtm.ordersfood.entity.Product;
-import com.anhtm.ordersfood.repository.CategoriesRepository;
 import com.anhtm.ordersfood.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,13 @@ public class ProductConverter implements BaseConverter<ProductDto, Product> {
     private UserConverter userConverter;
 
     @Autowired
-    private CategoriesRepository categoriesRepository;
+    private CategoriesConverter categoriesConverter;
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public ProductDto entityToDto (Product entity) {
@@ -27,7 +31,7 @@ public class ProductConverter implements BaseConverter<ProductDto, Product> {
         dto.setName(entity.getName());
         dto.setPrice(entity.getPrice());
         dto.setCost(entity.getCost());
-        dto.setMainPhotoId(null);
+//        dto.setMainPhotoId(null);
         dto.setDescription(entity.getDescription());
         dto.setQuantity(entity.getQuantity());
         dto.setCategoriesId(entity.getCategories().getId());
@@ -51,7 +55,10 @@ public class ProductConverter implements BaseConverter<ProductDto, Product> {
         entity.setCost(dto.getCost());
         entity.setDescription(dto.getDescription());
         entity.setQuantity(dto.getQuantity());
-        entity.setCategories(categoriesRepository.findById(dto.getCategoriesId()).get());
+        if (dto.getCategories() != null) {
+            Categories categories = modelMapper.map(dto.getCategories(), Categories.class);
+            entity.setCategories(categories);
+        }
         entity.setActive(dto.getActive());
 //        entity.setCreatedBy(userRepository. dto.getCreatedBy());
 //        entity.setUpdatedBy(dto.getUpdatedBy());

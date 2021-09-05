@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties
-public class YAMLConfig {
+public class YAMLConfiguration {
 
     /**
      * The Server port.

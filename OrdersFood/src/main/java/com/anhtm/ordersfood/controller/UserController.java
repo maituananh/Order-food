@@ -1,5 +1,6 @@
 package com.anhtm.ordersfood.controller;
 
+import com.anhtm.ordersfood.common.BaseController;
 import com.anhtm.ordersfood.dto.UserDto;
 import com.anhtm.ordersfood.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "User Controller", description = "REST Apis related to User Entity.")
 @RestController
 @RequestMapping("api/user")
-public class UserController {
+
+public class UserController implements BaseController {
     @Autowired
     private UserService userService;
 

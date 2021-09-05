@@ -10,6 +10,7 @@ import java.util.Set;
 @Data
 public class ProductDto extends BaseDto {
 
+    @Schema(defaultValue = "null")
     private Integer id;
 
     private String name;
@@ -24,11 +25,12 @@ public class ProductDto extends BaseDto {
 
     private Integer quantity;
 
-    private Integer mainPhotoId;
-    @Schema(defaultValue = "null", hidden = true)
-    private DataSourceDto mainPhoto;
+//    private Integer mainPhotoId;
+//    @Schema(defaultValue = "null", hidden = true)
+//    private DataSourceDto mainPhoto;
 
     private Integer categoriesId;
+
     @Schema(defaultValue = "null", hidden = true)
     private CategoriesDto categories;
 

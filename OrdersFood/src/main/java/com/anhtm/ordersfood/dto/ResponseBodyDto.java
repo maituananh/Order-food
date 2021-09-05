@@ -10,14 +10,14 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseHeaderDto {
+public class ResponseBodyDto {
     Object data;
     HttpStatus status;
     Integer code;
     String message;
     Date date;
 
-    public ResponseHeaderDto(Object data, HttpStatus status, String message) {
+    public ResponseBodyDto(Object data, HttpStatus status, String message) {
         this.data = data;
         this.status = status;
         this.message = message;
