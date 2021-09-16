@@ -42,7 +42,8 @@ public class LogAppController {
 
 
         String token = jwtTokenProvider.getJWTToken(loginRequest.getUsername());
-        response.setHeader("Authorization", token);
+        response.addHeader("Access-Control-Expose-Headers", "Authorization");
+        response.addHeader("Authorization", token);
         return ResponseUtils.response(null, "Completed", HttpStatus.OK);
     }
 }
