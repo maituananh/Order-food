@@ -1,4 +1,3 @@
-import { HttpResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -27,6 +26,10 @@ export class LoginComponent implements OnInit {
     ngOnInit() {}
 
     onSubmit() {
+        if (localStorage.getItem('authorization')) {
+            localStorage.clear();
+        }
+
         this.logApp.username = this.formLogin.value['username'];
         this.logApp.password = this.formLogin.value['password'];
         

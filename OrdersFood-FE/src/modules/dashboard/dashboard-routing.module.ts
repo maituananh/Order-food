@@ -11,6 +11,7 @@ import * as dashboardContainers from './containers';
 
 /* Guards */
 import * as dashboardGuards from './guards';
+import { AuthGuardService } from '@app/share/service/AuthGuardService';
 
 /* Routes */
 export const ROUTES: Routes = [
@@ -25,7 +26,7 @@ export const ROUTES: Routes = [
                 },
             ],
         } as SBRouteData,
-        canActivate: [],
+        canActivate: [AuthGuardService],
         component: dashboardContainers.DashboardComponent,
     },
     {
@@ -43,7 +44,7 @@ export const ROUTES: Routes = [
                 },
             ],
         } as SBRouteData,
-        canActivate: [],
+        canActivate: [AuthGuardService],
         component: dashboardContainers.StaticComponent,
     },
     {
@@ -61,7 +62,7 @@ export const ROUTES: Routes = [
                 },
             ],
         } as SBRouteData,
-        canActivate: [],
+        canActivate: [AuthGuardService],
         component: dashboardContainers.LightComponent,
     },
 ];

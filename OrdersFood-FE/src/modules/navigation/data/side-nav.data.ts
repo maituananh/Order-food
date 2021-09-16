@@ -7,11 +7,11 @@ export const sideNavSections: SideNavSection[] = [
     },
     {
         text: 'INTERFACE',
-        items: ['layouts', 'pages'],
+        items: [/*'layouts',*/ 'pages'],
     },
     {
-        text: 'ADDONS',
-        items: ['charts', 'tables'],
+        // text: 'ADDONS',
+        items: [/*'charts',*/ 'tables'],
     },
 ];
 
@@ -56,20 +56,33 @@ export const sideNavItems: SideNavItems = {
                     },
                 ],
             },
+            // {
+            //     text: 'Error',
+            //     submenu: [
+            //         {
+            //             text: '401 Page',
+            //             link: '/error/401',
+            //         },
+            //         {
+            //             text: '404 Page',
+            //             link: '/error/404',
+            //         },
+            //         {
+            //             text: '500 Page',
+            //             link: '/error/500',
+            //         },
+            //     ],
+            // },
             {
-                text: 'Error',
+                text: 'User manager',
                 submenu: [
                     {
-                        text: '401 Page',
-                        link: '/error/401',
+                        text: 'User List',
+                        link: '/user/list',
                     },
                     {
-                        text: '404 Page',
-                        link: '/error/404',
-                    },
-                    {
-                        text: '500 Page',
-                        link: '/error/500',
+                        text: 'Create User',
+                        link: '/user/create',
                     },
                 ],
             },
