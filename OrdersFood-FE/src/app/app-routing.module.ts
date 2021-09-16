@@ -9,15 +9,11 @@ const routes: Routes = [
     },
     {
         path: 'charts',
-        loadChildren: () =>
-            import('modules/charts/charts-routing.module').then(m => m.ChartsRoutingModule),
+        loadChildren: () => import('modules/charts/charts-routing.module').then(m => m.ChartsRoutingModule),
     },
     {
         path: 'dashboard',
-        loadChildren: () =>
-            import('modules/dashboard/dashboard-routing.module').then(
-                m => m.DashboardRoutingModule
-            ),
+        loadChildren: () =>import('modules/dashboard/dashboard-routing.module').then(m => m.DashboardRoutingModule),
     },
     {
         path: 'auth',
@@ -38,6 +34,11 @@ const routes: Routes = [
         path: 'version',
         loadChildren: () =>
             import('modules/utility/utility-routing.module').then(m => m.UtilityRoutingModule),
+    },
+    {
+        path: 'user',
+        loadChildren: () =>
+            import('modules/user/user-routing.module').then(m => m.UserRoutingModule),
     },
     {
         path: '**',
