@@ -39,4 +39,11 @@ public class BeansConfiguration {
         SwaggerConfiguration swaggerConfiguration = new SwaggerConfiguration();
         return swaggerConfiguration.api();
     }
+
+    // @Bean
+    // public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+    //     StrictHttpFirewall firewall = new StrictHttpFirewall();
+    //     firewall.setAllowUrlEncodedSlash(true);    
+    //     return firewall;
+    // }
 }

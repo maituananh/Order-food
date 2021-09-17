@@ -78,7 +78,7 @@ export const sideNavItems: SideNavItems = {
                 submenu: [
                     {
                         text: 'User List',
-                        link: '/user/list',
+                        link: '/user',
                     },
                     {
                         text: 'Create User',

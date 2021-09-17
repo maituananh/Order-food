@@ -7,6 +7,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -26,21 +27,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                      FilterChain chain) throws ServletException, IOException {
         try {
             if (jwtTokenProvider.checkJWTToken(request, response)) {
+                log.info("1");
                 Claims claims = jwtTokenProvider.validateToken(request);
+                log.info("2");
                 if (claims.get("authorities") != null) {
+                    log.info("3");
                     jwtTokenProvider.setUpSpringAuthentication(claims);
                 } else {
+                    log.info("4");
                     SecurityContextHolder.clearContext();
                 }
             } else {
+                log.info("5");
                 SecurityContextHolder.clearContext();
             }
+            log.info("6");
             chain.doFilter(request, response);
         } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException e) {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             ((HttpServletResponse) response).sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
         }
     }
-
-
 }

@@ -16,6 +16,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    // @Autowired
+    // private BeansConfiguration beansConfiguration;
+
     private static final String[] AUTH_WHITELIST = {
             // -- Swagger UI v2
             "/v2/api-docs",
@@ -34,8 +37,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//                .cors()
-//                .and()
+                .cors()
+                .and()
                 .csrf()
                 .disable()
 //                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
@@ -52,4 +55,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         ;
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
+    // @Override
+    // public void configure(WebSecurity web) throws Exception {
+    //     //@formatter:off
+    //     super.configure(web);
+    //     web.httpFirewall(beansConfiguration.allowUrlEncodedSlashHttpFirewall());
+    // }
 }

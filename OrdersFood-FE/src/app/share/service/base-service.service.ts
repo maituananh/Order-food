@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Routes } from '../constants/routes';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class BaseService {
   public doGetApi(url: string): Observable<Object> {
     return this.http.get(this.BASE_URL.concat(url), {
       headers: this.HEADER,
+      observe: 'response' as 'body',
     }).pipe(catchError(this.handleError));
   }
 
@@ -29,7 +31,6 @@ export class BaseService {
     return this.http.post(this.BASE_URL.concat(url), data, {
       headers: this.HEADER,
       observe: 'response' as 'body',
-      responseType: 'json'
     }).pipe(catchError(this.handleError));
   }
 
@@ -46,6 +47,10 @@ export class BaseService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    if (error && error.status == 403) {
+      localStorage.clear();
+      window.location.href = Routes.ERROR_403;
+    }
     return throwError(error);
   }
 }

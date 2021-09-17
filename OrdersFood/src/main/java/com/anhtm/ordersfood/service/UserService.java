@@ -14,4 +14,6 @@ public interface UserService {
     ResponseEntity <Object> deleteAndFlush(Integer id);
 
     ResponseEntity <Object> findUser(LogAppDto dto);
+
+    ResponseEntity <Object> findAllUser();
 }

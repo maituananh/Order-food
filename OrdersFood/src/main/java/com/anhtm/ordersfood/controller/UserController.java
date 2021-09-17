@@ -12,30 +12,37 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "User Controller", description = "REST Apis related to User Entity.")
 @RestController
 @RequestMapping("api/user")
-
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController implements BaseController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(path = "/save", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity <Object> save (@RequestBody UserDto dto) {
+    @GetMapping(path = "/")
+    public ResponseEntity<Object> find() {
+        return userService.findAllUser();
+    }
+
+    @PostMapping(path = "/save", consumes = { MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE })
+    public ResponseEntity<Object> save(@RequestBody UserDto dto) {
         return userService.save(dto);
     }
 
-    @PutMapping(path = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity <Object> update (@RequestBody UserDto t) {
+    @PutMapping(path = "/update", consumes = { MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE })
+    public ResponseEntity<Object> update(@RequestBody UserDto t) {
         return userService.update(t);
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity <Object> delete (@PathVariable("id") Integer id) {
+    public ResponseEntity<Object> delete(@PathVariable("id") Integer id) {
         return userService.delete(id);
     }
 
     @DeleteMapping(path = "/delete-flush/{id}")
-    public ResponseEntity <Object> deleteAndFlush (@PathVariable("id") Integer id) {
+    public ResponseEntity<Object> deleteAndFlush(@PathVariable("id") Integer id) {
         return userService.deleteAndFlush(id);
     }
 }

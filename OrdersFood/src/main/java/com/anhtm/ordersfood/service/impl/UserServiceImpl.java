@@ -11,11 +11,12 @@ import com.anhtm.ordersfood.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -165,5 +166,15 @@ public class UserServiceImpl implements UserService {
 
         return ResponseUtils.response(userConverter.entityToDto(user), "Completed",
                 HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> findAllUser() {
+        List<UserDto> uList = new ArrayList<UserDto>((int) userRepository.count());
+        userRepository.findAll().stream().forEach(user -> {
+            uList.add(userConverter.entityToDto(user));
+        });
+
+        return ResponseUtils.response(uList, "Completed", HttpStatus.OK);
     }
 }
