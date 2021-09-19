@@ -10,7 +10,7 @@
             <fa-icon class="mr-1" [icon]='["fas", "table"]'></fa-icon>DataTable Example
         </div>
         <div class="card-body">
-            <sb-ng-bootstrap-table [pageSize]="11" [dataTable]="dataModel"></sb-ng-bootstrap-table>
+            <sb-ng-bootstrap-table [pageSize]="11" [dataTable]="dataModel" (outID)="onAction($event)"></sb-ng-bootstrap-table>
         </div>
     </sb-card>
 </sb-layout-dashboard>

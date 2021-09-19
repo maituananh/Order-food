@@ -2,15 +2,19 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    EventEmitter,
     Input,
     OnInit,
+    Output,
     QueryList,
     ViewChildren,
 } from '@angular/core';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { Country } from '@modules/tables/models';
+// import { Action } from '@modules/tables/models/action.model';
 import { CountryService } from '@modules/tables/services';
 import { Observable } from 'rxjs';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
     selector: 'sb-ng-bootstrap-table',
@@ -21,6 +25,7 @@ import { Observable } from 'rxjs';
 export class NgBootstrapTableComponent implements OnInit {
     @Input() pageSize = 10;
     @Input() dataTable: any;
+    @Output() outID = new EventEmitter<any>();
 
     countries$!: Observable<Country[]>;
     total$!: Observable<number>;
@@ -46,5 +51,13 @@ export class NgBootstrapTableComponent implements OnInit {
         this.countryService.sortColumn = column;
         this.countryService.sortDirection = direction;
         this.changeDetectorRef.detectChanges();
+    }
+
+    outActionID(id: number, action: string): void {
+        const ob = {
+           id: id,
+           action: action  
+        }
+        this.outID.emit(ob);
     }
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "User Controller", description = "REST Apis related to User Entity.")
 @RestController
 @RequestMapping("api/user")
-@CrossOrigin(origins = "http://localhost:4200")
 public class UserController implements BaseController {
     @Autowired
     private UserService userService;

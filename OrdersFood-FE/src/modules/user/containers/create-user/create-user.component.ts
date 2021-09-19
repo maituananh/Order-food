@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'sb-create-user',
@@ -8,9 +9,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class CreateUserComponent implements OnInit {
 
-  constructor() { }
+  private id: string;
+
+  constructor(private router: Router) { 
+    this.id = this.router.getCurrentNavigation()?.extras?.state?.id;
+  }
 
   ngOnInit(): void {
+    if (this.id) {
+      // request
+    }
   }
 
 }
