@@ -26,9 +26,7 @@ export class UserListComponent implements OnInit {
   onAction(event: any) {
     if (event.action === 'edit') {
       this.router.navigate(['user/create'], { state: { id:event.id , name:event.action } });
-      // this.baseService.doPutApi('api/user/update', event).subscribe((res) => {
-        
-      // })
+
     } else if (event.action === 'delete') {
       this.baseService.doDeleteApi('api/user/delete/' + event.id).subscribe((res: any) => {
         if (res.code == 200) {

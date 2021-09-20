@@ -10,9 +10,13 @@ export const sideNavSections: SideNavSection[] = [
         items: [/*'layouts',*/ 'pages'],
     },
     {
-        // text: 'ADDONS',
-        items: [/*'charts',*/ 'tables'],
+        text: 'SWAGGER-UI',
+        items: [/*'layouts',*/ 'pages'],
     },
+    // {
+    //     // text: 'ADDONS',
+    //     items: [/*'charts',*/ 'tables'],
+    // },
 ];
 
 export const sideNavItems: SideNavItems = {
