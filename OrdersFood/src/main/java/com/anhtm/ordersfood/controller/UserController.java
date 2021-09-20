@@ -21,6 +21,11 @@ public class UserController implements BaseController {
         return userService.findAllUser();
     }
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Object> find(@PathVariable("id") Integer id) {
+        return userService.find(id);
+    }
+
     @PostMapping(path = "/save", consumes = { MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE })

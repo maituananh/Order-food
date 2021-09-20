@@ -16,4 +16,6 @@ public interface UserService {
     ResponseEntity <Object> findUser(LogAppDto dto);
 
     ResponseEntity <Object> findAllUser();
+
+    ResponseEntity <Object> find(Integer id);
 }

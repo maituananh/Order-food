@@ -177,4 +177,10 @@ public class UserServiceImpl implements UserService {
 
         return ResponseUtils.response(uList, "Completed", HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Object> find(Integer id) {
+        UserDto dto = userConverter.entityToDto(userRepository.findById(id).get());
+        return ResponseUtils.response(dto, "Completed", HttpStatus.OK);
+    }
 }
