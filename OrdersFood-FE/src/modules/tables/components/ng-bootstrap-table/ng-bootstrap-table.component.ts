@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -15,6 +16,8 @@ import { Country } from '@modules/tables/models';
 import { CountryService } from '@modules/tables/services';
 import { Observable } from 'rxjs';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { User } from '@app/share/models/user';
+
 
 @Component({
     selector: 'sb-ng-bootstrap-table',
@@ -24,10 +27,10 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 })
 export class NgBootstrapTableComponent implements OnInit {
     @Input() pageSize = 10;
-    @Input() dataTable: any;
+    @Input() dataTable: Array<User>;
     @Output() outID = new EventEmitter<any>();
 
-    countries$!: Observable<Country[]>;
+    countries$!: Observable<User[]>;
     total$!: Observable<number>;
     sortedColumn!: string;
     sortedDirection!: string;
@@ -35,9 +38,11 @@ export class NgBootstrapTableComponent implements OnInit {
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
 
     constructor(
-        public countryService: CountryService,
+        public countryService: UserService,
         private changeDetectorRef: ChangeDetectorRef
-    ) {}
+    ) {
+        this.countryService.dataTable = this.dataTable;
+    }
 
     ngOnInit() {
         this.countryService.pageSize = this.pageSize;
@@ -55,9 +60,9 @@ export class NgBootstrapTableComponent implements OnInit {
 
     outActionID(id: number, action: string): void {
         const ob = {
-           id: id,
-           action: action  
-        }
+            id: id,
+            action: action,
+        };
         this.outID.emit(ob);
     }
 }
