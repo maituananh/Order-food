@@ -9,11 +9,15 @@ const routes: Routes = [
     },
     {
         path: 'charts',
-        loadChildren: () => import('modules/charts/charts-routing.module').then(m => m.ChartsRoutingModule),
+        loadChildren: () =>
+            import('modules/charts/charts-routing.module').then(m => m.ChartsRoutingModule),
     },
     {
         path: 'dashboard',
-        loadChildren: () =>import('modules/dashboard/dashboard-routing.module').then(m => m.DashboardRoutingModule),
+        loadChildren: () =>
+            import('modules/dashboard/dashboard-routing.module').then(
+                m => m.DashboardRoutingModule
+            ),
     },
     {
         path: 'auth',

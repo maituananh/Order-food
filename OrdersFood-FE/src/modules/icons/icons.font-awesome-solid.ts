@@ -12,12 +12,12 @@ import {
     faChevronDown,
     faChevronUp,
     faColumns,
+    faHighlighter,
     faSearch,
     faTable,
-    faTrash,
     faTachometerAlt,
+    faTrash,
     faUser,
-    faHighlighter,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeSolidIcons = {

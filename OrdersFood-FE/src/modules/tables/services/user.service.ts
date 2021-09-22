@@ -1,4 +1,3 @@
-import { User } from './../../../app/share/models/user';
 import { DecimalPipe } from '@angular/common';
 import { Injectable, PipeTransform } from '@angular/core';
 import { COUNTRIES } from '@modules/tables/data/countries';
@@ -6,6 +5,8 @@ import { SortDirection } from '@modules/tables/directives';
 import { Country } from '@modules/tables/models';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
+
+import { User } from './../../../app/share/models/user';
 
 interface SearchResult {
     countries: User[];
@@ -38,13 +39,8 @@ function sort(countries: User[], column: string, direction: string): User[] {
 function matches(country: User, term: string, pipe: PipeTransform) {
     return (
         country.name.toLowerCase().includes(term.toLowerCase()) ||
-        pipe.transform(country.id).includes(term) 
-        // ||
-        // pipe.transform(country.email).includes(term)
-        ||
+        pipe.transform(country.id).includes(term) ||
         pipe.transform(country.phone).includes(term)
-        // ||
-        // pipe.transform(country.name).includes(term)
     );
 }
 

@@ -1,7 +1,9 @@
 # Order-food
+ - run with docker
+   + docker-compose up
 
-1. docker image build -t order-food-be .
-2. docker-compose up
+ - check style fontend
+   + npm run lint -- --fix
 
 
 spring security

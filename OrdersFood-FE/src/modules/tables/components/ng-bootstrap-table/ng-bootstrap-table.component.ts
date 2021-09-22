@@ -1,4 +1,3 @@
-import { UserService } from './../../services/user.service';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -10,14 +9,15 @@ import {
     QueryList,
     ViewChildren,
 } from '@angular/core';
+import { User } from '@app/share/models/user';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { Country } from '@modules/tables/models';
 // import { Action } from '@modules/tables/models/action.model';
 import { CountryService } from '@modules/tables/services';
 import { Observable } from 'rxjs';
 import { Action } from 'rxjs/internal/scheduler/Action';
-import { User } from '@app/share/models/user';
 
+import { UserService } from './../../services/user.service';
 
 @Component({
     selector: 'sb-ng-bootstrap-table',
@@ -37,10 +37,7 @@ export class NgBootstrapTableComponent implements OnInit {
 
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
 
-    constructor(
-        public countryService: UserService,
-        private changeDetectorRef: ChangeDetectorRef
-    ) {}
+    constructor(public countryService: UserService, private changeDetectorRef: ChangeDetectorRef) {}
 
     ngOnInit() {
         console.log(this.dataTable);
@@ -61,8 +58,8 @@ export class NgBootstrapTableComponent implements OnInit {
 
     outActionID(id: number, action: string): void {
         const ob = {
-            id: id,
-            action: action,
+            id,
+            action,
         };
         this.outID.emit(ob);
     }

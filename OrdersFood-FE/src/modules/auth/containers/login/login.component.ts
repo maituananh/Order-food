@@ -12,7 +12,6 @@ import { BaseService } from '@app/share/service/base-service.service';
     styleUrls: ['login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
     formLogin = new FormGroup({
         username: new FormControl(''),
         password: new FormControl(''),
@@ -30,14 +29,14 @@ export class LoginComponent implements OnInit {
             localStorage.clear();
         }
 
-        this.logApp.username = this.formLogin.value['username'];
-        this.logApp.password = this.formLogin.value['password'];
-        
-        this.baseService.doPostApi(Api.API_LOGIN, this.logApp).subscribe((_response) => {
+        this.logApp.username = this.formLogin.value.username;
+        this.logApp.password = this.formLogin.value.password;
+
+        this.baseService.doPostApi(Api.API_LOGIN, this.logApp).subscribe(_response => {
             const authorization = _response.headers.get('authorization');
             localStorage.setItem('authorization', authorization);
-            
-            if (authorization && _response.status == 200) {
+
+            if (authorization && _response.status === 200) {
                 this.router.navigate(['/dashboard']);
             }
         });

@@ -8,7 +8,6 @@ import { Routes } from '@app/share/constants/routes';
     styleUrls: ['error-401.component.scss'],
 })
 export class Error401Component implements OnInit {
-
     urlLogin: string = Routes.AUTH_LOGIN;
 
     constructor() {}

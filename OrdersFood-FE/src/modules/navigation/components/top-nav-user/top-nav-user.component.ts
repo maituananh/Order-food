@@ -9,7 +9,6 @@ import { UserService } from '@modules/auth/services';
     styleUrls: ['top-nav-user.component.scss'],
 })
 export class TopNavUserComponent implements OnInit {
-
     urlLogin: string = Routes.AUTH_LOGIN;
 
     constructor(public userService: UserService) {}
