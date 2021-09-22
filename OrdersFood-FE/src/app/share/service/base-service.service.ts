@@ -48,9 +48,8 @@ export class BaseService {
 
   private handleError(error: HttpErrorResponse) {
     if (error) {
-      localStorage.clear();
-
       if (error.status == 403) {
+        localStorage.clear();
         window.location.href = Routes.ERROR_401;
       } else if (error.status == 0) {
         // window.location.href = Routes.ERROR_500;

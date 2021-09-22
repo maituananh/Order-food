@@ -26,8 +26,8 @@ import { User } from '@app/share/models/user';
     styleUrls: ['ng-bootstrap-table.component.scss'],
 })
 export class NgBootstrapTableComponent implements OnInit {
-    @Input() pageSize = 10;
-    @Input() dataTable: Array<User>;
+    @Input() pageSize = 2;
+    @Input() dataTable: Array<User> = new Array<User>();
     @Output() outID = new EventEmitter<any>();
 
     countries$!: Observable<User[]>;
@@ -40,11 +40,12 @@ export class NgBootstrapTableComponent implements OnInit {
     constructor(
         public countryService: UserService,
         private changeDetectorRef: ChangeDetectorRef
-    ) {
-        this.countryService.dataTable = this.dataTable;
-    }
+    ) {}
 
     ngOnInit() {
+        console.log(this.dataTable);
+        this.countryService.dataTable = this.dataTable;
+
         this.countryService.pageSize = this.pageSize;
         this.countries$ = this.countryService.countries$;
         this.total$ = this.countryService.total$;

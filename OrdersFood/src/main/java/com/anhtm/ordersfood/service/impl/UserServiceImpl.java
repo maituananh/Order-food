@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = userRepository.findByEmailIgnoreCase(dto.getEmail());
-        if (user != null && user.getId().equals(dto.getId())) {
+        if (user != null && !user.getId().equals(dto.getId())) {
             return ResponseUtils.response(dto, "Duplicate Email", HttpStatus.BAD_REQUEST);
         }
         return null;
@@ -136,7 +136,7 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = userRepository.findByPhone(dto.getPhone());
-        if (user != null && user.getId().equals(dto.getId())) {
+        if (user != null && !user.getId().equals(dto.getId())) {
             return ResponseUtils.response(dto, "Duplicate Number Phone", HttpStatus.BAD_REQUEST);
         }
         return null;

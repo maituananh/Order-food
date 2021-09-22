@@ -18,8 +18,11 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     // get data user
     this.baseService.doGetApi('api/user/').subscribe((res: any) => {
-      this.dataModel = res.body.data
-      console.log(res.body.data);
+      // this.dataModel = res.body.data;
+      res.body.data.forEach((element: User) => {
+        this.dataModel.push(element);
+      });
+      // console.log(this.dataModel);
     });
   }
 
