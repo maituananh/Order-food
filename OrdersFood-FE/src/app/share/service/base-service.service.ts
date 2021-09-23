@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Api } from '../constants/api';
 
 import { Routes } from '../constants/routes';
 
@@ -9,10 +10,10 @@ import { Routes } from '../constants/routes';
     providedIn: 'root',
 })
 export class BaseService {
-    private BASE_URL = 'http://localhost:8080/';
+
     private HEADER: HttpHeaders = new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin': this.BASE_URL,
+        'Access-Control-Allow-Origin': Api._BASE_URL,
         'Access-Control-Allow-Credentials': 'true',
         'Access-Control-Allow-Methods': '*',
         'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept',
@@ -22,7 +23,7 @@ export class BaseService {
 
     public doGetApi(url: string): Observable<any> {
         return this.http
-            .get(this.BASE_URL.concat(url), {
+            .get(Api._BASE_URL.concat(url), {
                 headers: this.HEADER,
                 observe: 'response' as 'body',
             })
@@ -31,7 +32,7 @@ export class BaseService {
 
     public doPostApi(url: string, data: any): Observable<any> {
         return this.http
-            .post(this.BASE_URL.concat(url), data, {
+            .post(Api._BASE_URL.concat(url), data, {
                 headers: this.HEADER,
                 observe: 'response' as 'body',
             })
@@ -40,7 +41,7 @@ export class BaseService {
 
     public doPutApi(url: string, data: any): Observable<any> {
         return this.http
-            .put(this.BASE_URL.concat(url), data, {
+            .put(Api._BASE_URL.concat(url), data, {
                 headers: this.HEADER,
             })
             .pipe(catchError(this.handleError));
@@ -48,7 +49,7 @@ export class BaseService {
 
     public doDeleteApi(url: string): Observable<any> {
         return this.http
-            .delete(this.BASE_URL.concat(url), {
+            .delete(Api._BASE_URL.concat(url), {
                 headers: this.HEADER,
             })
             .pipe(catchError(this.handleError));
