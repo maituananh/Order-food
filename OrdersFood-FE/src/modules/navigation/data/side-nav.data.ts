@@ -1,4 +1,3 @@
-import { Api } from '@app/share/constants/api';
 import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 
 export const sideNavSections: SideNavSection[] = [
@@ -10,10 +9,6 @@ export const sideNavSections: SideNavSection[] = [
         text: 'INTERFACE',
         items: [/*'layouts',*/ 'pages'],
     },
-    // {
-    //     text: 'SWAGGER-UI',
-    //     items: [/*'layouts',*/ 'swagger'],
-    // },
     // {
     //     // text: 'ADDONS',
     //     items: [/*'charts',*/ 'tables'],
@@ -91,6 +86,19 @@ export const sideNavItems: SideNavItems = {
                     },
                 ],
             },
+            {
+                text: 'Product manager',
+                submenu: [
+                    {
+                        text: 'Product List',
+                        link: '/product',
+                    },
+                    {
+                        text: 'Create Product',
+                        link: '/product/create',
+                    },
+                ],
+            },
         ],
     },
     charts: {
@@ -103,9 +111,4 @@ export const sideNavItems: SideNavItems = {
         text: 'Tables',
         link: '/tables',
     },
-    // swagger: {
-    //     icon: 'table',
-    //     text: 'Swagger',
-    //     link: '/' + Api._BASE_URL,
-    // },
 };
