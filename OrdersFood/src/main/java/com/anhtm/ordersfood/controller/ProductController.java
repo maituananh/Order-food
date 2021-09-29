@@ -30,4 +30,9 @@ public class ProductController implements BaseController {
     public ResponseEntity <Object> delete (@PathVariable Integer id) {
         return null;
     }
+
+    @GetMapping(path = "/get")
+    public ResponseEntity <Object> getAll () {
+        return this.productService.getAll();
+    }
 }

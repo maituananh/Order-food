@@ -78,4 +78,14 @@ public class ProductServiceImpl implements ProductService {
 
         return ResponseUtils.response(id, "Completed", HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity <Object> getAll () {
+        List<ProductDto> dtos = new ArrayList <>();
+        productRepository.findAll().forEach(product -> {
+            dtos.add(this.productConverter.entityToDto(product));
+        });
+
+        return ResponseUtils.response(dtos, "Completed", HttpStatus.OK);
+    }
 }

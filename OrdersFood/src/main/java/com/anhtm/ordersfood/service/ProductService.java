@@ -13,4 +13,6 @@ public interface ProductService {
     ResponseEntity<Object> delete(Integer id);
 
     ResponseEntity<Object> deleteAndFlush(Integer id);
+
+    ResponseEntity<Object> getAll();
 }
