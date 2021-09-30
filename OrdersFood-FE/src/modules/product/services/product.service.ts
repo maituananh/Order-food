@@ -8,9 +8,11 @@ export class ProductService {
 
   constructor(private baseService: BaseService) { }
 
-  getAllProduct() {
-    return this.baseService.doGetApi('').subscribe(res => {
+  async getAllProduct() {
+    return await this.baseService.doGetApi('api/product/get').subscribe(res => {
+      console.log(res);
       return res;
-    })
+    });
   }
+  
 }

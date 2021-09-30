@@ -34,7 +34,7 @@ public class ProductConverter implements BaseConverter<ProductDto, Product> {
 //        dto.setMainPhotoId(null);
         dto.setDescription(entity.getDescription());
         dto.setQuantity(entity.getQuantity());
-        dto.setCategoriesId(entity.getCategories().getId());
+        dto.setCategoriesId(null);
         dto.setCartProducts(null);
 
         dto.setActive(entity.getActive());
