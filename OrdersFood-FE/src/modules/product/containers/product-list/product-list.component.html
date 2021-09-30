@@ -7,7 +7,7 @@
         <div class="card">
           <img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" class="card-img-top" alt="...">
           <div class="card-body">
-            <a href="#"><h5 class="card-title">{{product.name}}</h5></a>
+            <a [routerLink]="['product-detail', product.id]" ><h5 class="card-title">{{product.name}}</h5></a>
             <p class="card-text">{{product.description}}</p>
           </div>
           <div class="card-footer">

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '@app/share/service/AuthGuardService';
 import { SBRouteData } from '@modules/navigation/models';
+
 import * as productContainers from './containers';
 import { ProductModule } from './product.module';
 
@@ -23,6 +24,14 @@ export const ROUTES: Routes = [
         path: '',
         canActivate: [],
         component: productContainers.ProductListComponent,
+        data: {
+            title: 'Pages Login - SB Admin Angular',
+        } as SBRouteData,
+    },
+    {
+        path: 'product-detail/:id',
+        canActivate: [],
+        component: productContainers.ProductDetailComponent,
         data: {
             title: 'Pages Login - SB Admin Angular',
         } as SBRouteData,

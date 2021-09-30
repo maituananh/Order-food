@@ -2,15 +2,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Api } from '../constants/api';
 
+import { Api } from '../constants/api';
 import { Routes } from '../constants/routes';
 
 @Injectable({
     providedIn: 'root',
 })
 export class BaseService {
-
     private HEADER: HttpHeaders = new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': Api._BASE_URL,
