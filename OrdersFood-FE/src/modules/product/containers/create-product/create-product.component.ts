@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./create-product.component.scss'],
 })
 export class CreateProductComponent implements OnInit {
+    title: string = 'Create Product';
+
     constructor() {}
 
     ngOnInit() {}

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Product } from '@app/share/models/product';
+import { BaseService } from '@app/share/service/base-service.service';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'sb-product-detail',
@@ -6,7 +10,15 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-    constructor() {}
+    product: Product = new Product();
+    title: string = 'Product Detail';
 
-    ngOnInit(): void {}
+    constructor(private activatedRoute : ActivatedRoute, private baseService : BaseService) {}
+
+    ngOnInit(): void {
+        this.activatedRoute.paramMap.pipe(
+            map(param => param.get('id')),
+            switchMap(id => this.baseService.doGetApi('api/product/get/' + id))
+        ).subscribe(product => {this.product = product.body.data});
+    }
 }

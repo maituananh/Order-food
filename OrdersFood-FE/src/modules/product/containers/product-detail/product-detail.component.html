@@ -1,5 +1,5 @@
 <sb-layout-dashboard>
-    <sb-dashboard-head title="123" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <sb-dashboard-head title={{title}} [hideBreadcrumbs]="false"></sb-dashboard-head>
     <div class="ml-md-5 pl-md-3">
         <section class="product">
             <div class="product__photo">
@@ -28,11 +28,11 @@
             </div>
             <div class="product__info">
                 <div class="title">
-                    <h1>Delicious Apples</h1>
+                    <h1>{{product.name}}</h1>
                     <span>COD: 45999</span>
                 </div>
                 <div class="price">
-                    R$ <span>7.93</span>
+                    $ <span>{{product.price}}</span>
                 </div>
                 <div class="variant">
                     <h3>SELECT A COLOR</h3>

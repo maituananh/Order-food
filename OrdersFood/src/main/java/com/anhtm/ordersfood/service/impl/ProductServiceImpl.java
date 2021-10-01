@@ -88,4 +88,14 @@ public class ProductServiceImpl implements ProductService {
 
         return ResponseUtils.response(dtos, "Completed", HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Object> getById(Integer id) {
+        if (id == 0 && id == null) {
+            return ResponseUtils.response(null, "Object not found", HttpStatus.BAD_REQUEST);
+        }
+        Product product = productRepository.findById(id).get();
+
+        return ResponseUtils.response(this.productConverter.entityToDto(product), "Completed", HttpStatus.OK);
+    }
 }

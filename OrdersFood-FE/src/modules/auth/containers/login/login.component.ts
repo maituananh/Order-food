@@ -13,8 +13,8 @@ import { BaseService } from '@app/share/service/base-service.service';
 })
 export class LoginComponent implements OnInit {
     formLogin = new FormGroup({
-        username: new FormControl(''),
-        password: new FormControl(''),
+        username: new FormControl('anhtm'),
+        password: new FormControl('root'),
     });
 
     private logApp: LogApp;

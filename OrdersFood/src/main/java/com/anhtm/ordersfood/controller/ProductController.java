@@ -35,4 +35,9 @@ public class ProductController implements BaseController {
     public ResponseEntity <Object> getAll () {
         return this.productService.getAll();
     }
+
+    @GetMapping(path = "/get/{id}")
+    public ResponseEntity <Object> getById (@PathVariable Integer id) {
+        return this.productService.getById(id);
+    }
 }
